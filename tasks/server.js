@@ -66,7 +66,9 @@ const server = http.createServer((req, res) => {
         .concat(body)
         .toString();
 
-      const message = parsedBody.split('=')[1];
+      const message = decodeURIComponent(
+  parsedBody.split('=')[1].replace(/\+/g, ' ')
+);
 
 
       fs.appendFile(
